@@ -3,12 +3,17 @@ import Col from "react-bootstrap/Col";
 import Intervals from "./Intervals";
 import UsageAdvice from "./UsageAdvice";
 
-function TargetLow() {
+function TargetLow(props) {
   return (
     <>
       <Row>
         <Col>
-          <Intervals></Intervals>
+          <p>I want to consume</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <Intervals {...props}></Intervals>
         </Col>
       </Row>
       <Row>
