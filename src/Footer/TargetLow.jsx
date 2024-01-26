@@ -1,17 +1,20 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Intervals from "./Intervals";
+import UsageAdvice from "./UsageAdvice";
 
 function TargetLow() {
   return (
     <>
       <Row>
-        <Col>TargetLow</Col>
+        <Col>
+          <Intervals></Intervals>
+        </Col>
       </Row>
       <Row>
-        <Col></Col>
-      </Row>
-      <Row>
-        <Col></Col>
+        <Col>
+          <UsageAdvice></UsageAdvice>
+        </Col>
       </Row>
     </>
   );
