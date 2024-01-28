@@ -8,7 +8,7 @@ function Head(props) {
     <>
       <Row>
         <Logo />
-        <Search></Search>
+        <Search />
       </Row>
       <Row>
         <Info {...props} />
