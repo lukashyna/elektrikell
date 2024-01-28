@@ -1,7 +1,7 @@
 import Col from "react-bootstrap/Col";
 
 function Logo() {
-  return <Col></Col>;
+  return <Col>Logo</Col>;
 }
 
 export default Logo;
