@@ -3,7 +3,7 @@ import SearchForm from "./SearchForm";
 
 function LeftSideBar({ show, handleClose }) {
   return (
-    <Offcanvas show={show} onHide={handleClose} placement="end">
+    <Offcanvas show={show} onHide={handleClose} placement="start">
       <Offcanvas.Header closeButton>
         <Offcanvas.Title>Search</Offcanvas.Title>
       </Offcanvas.Header>
