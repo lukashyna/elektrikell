@@ -1,17 +1,18 @@
 import Info from "./Info";
 import Logo from "./Logo";
 import Row from "react-bootstrap/Row";
-import Search from "./Search";
+// import Search from "./Search";
 
 function Head(props) {
+  const { handleOpenSideBar, ...restProps } = props;
   return (
     <>
       <Row>
-        <Logo />
-        <Search />
+        <Logo handleOpenSideBar={handleOpenSideBar} />
+        {/* <Search /> */}
       </Row>
       <Row>
-        <Info {...props} />
+        <Info {...restProps} />
       </Row>
     </>
   );
