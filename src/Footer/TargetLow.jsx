@@ -4,6 +4,7 @@ import Intervals from "./Intervals";
 import UsageAdvice from "./UsageAdvice";
 
 function TargetLow(props) {
+  const { currentPtice, ...restProps } = props;
   return (
     <>
       <Row>
@@ -13,12 +14,12 @@ function TargetLow(props) {
       </Row>
       <Row>
         <Col>
-          <Intervals {...props}></Intervals>
+          <Intervals {...restProps}></Intervals>
         </Col>
       </Row>
       <Row>
         <Col>
-          <UsageAdvice></UsageAdvice>
+          <UsageAdvice currentPtice={currentPtice}></UsageAdvice>
         </Col>
       </Row>
     </>

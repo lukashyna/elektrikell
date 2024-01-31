@@ -2,7 +2,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Countdown from "./Countdown";
 
-function UsageAdvice() {
+function UsageAdvice(props) {
   return (
     <>
       <Row>
