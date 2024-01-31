@@ -5,11 +5,14 @@ import Head, { DEFAULT_ACTIVE_BUTTON } from "./Head";
 import Body from "./Body";
 import Footer from "./Footer";
 import LeftSideBar from "./LeftSideBar";
+import { getDefaultFrom, getDefaultUntil } from "./utils/dates";
 
 function App() {
   const [activePrice, setActivePrice] = useState(DEFAULT_ACTIVE_BUTTON);
   const [activeHour, setActiveHour] = useState(); ////undefined
   const [showSideBar, setShowSideBar] = useState(false);
+  const [from, setFrom] = useState(getDefaultFrom());
+  const [until, setUntil] = useState(getDefaultUntil());
 
   const handleOpenSideBar = () => setShowSideBar(true);
   const handleCloseSideBar = () => setShowSideBar(false);
@@ -20,13 +23,20 @@ function App() {
         setActivePrice={setActivePrice}
         handleOpenSideBar={handleOpenSideBar}
       />
-      <Body activeHour={activeHour} />
+      <Body activeHour={activeHour} from={from} until={until} />
       <Footer
         activePrice={activePrice}
         activeHour={activeHour}
         setActiveHour={setActiveHour}
       />
-      <LeftSideBar show={showSideBar} handleClose={handleCloseSideBar} />
+      <LeftSideBar
+        show={showSideBar}
+        handleClose={handleCloseSideBar}
+        from={from}
+        until={until}
+        setFrom={setFrom}
+        setUntil={setUntil}
+      />
     </Container>
   );
 }
