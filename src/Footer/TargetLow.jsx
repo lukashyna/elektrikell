@@ -1,8 +1,9 @@
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Intervals from "./Intervals";
+import UsageAdvice from "./UsageAdvice";
 
-function TargetLow(props) {
+function TargetLow({ intervalMinPrice, ...props }) {
   return (
     <>
       <Row>
@@ -16,7 +17,9 @@ function TargetLow(props) {
         </Col>
       </Row>
       <Row>
-        <Col></Col>
+        <Col>
+          <UsageAdvice intervalMinPrice={intervalMinPrice} />
+        </Col>
       </Row>
     </>
   );

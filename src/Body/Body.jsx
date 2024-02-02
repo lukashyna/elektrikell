@@ -16,19 +16,17 @@ import { getPriceData } from "../services/apiService";
 import { chartDataConvertor } from "../utils";
 import { currentTimeStamp } from "../utils/dates";
 
-function Body({ from, until }) {
+function Body({ from, until, intervalMinPrice }) {
   const [priceData, setPriceData] = useState(null);
   const renderDot = (line) => {
     const {
-      // cx,
+      cx,
       // cy,
       payload: { timestamp },
     } = line;
-
+    const newCx = cx + 20;
     return timestamp === currentTimeStamp() ? (
-      <Dot {...line}>
-        <div></div>
-      </Dot>
+      <Dot {...line} cx={newCx}></Dot>
     ) : null;
   };
 
