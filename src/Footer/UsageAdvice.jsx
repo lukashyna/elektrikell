@@ -4,6 +4,13 @@ import Countdown from "react-countdown";
 import moment from "moment";
 
 function UsageAdvice({ intervalMinPrice }) {
+  const fromBestTime = moment
+    .unix(intervalMinPrice[0].timestamp)
+    .format("HH:mm");
+  const untilBestTime = moment
+    .unix(intervalMinPrice[intervalMinPrice.length - 1].timestamp)
+    .add(1, "hour")
+    .format("HH:mm");
   const mSek =
     moment.duration(intervalMinPrice[0].timestamp, "seconds").asMilliseconds() -
     Date.now();
@@ -13,12 +20,7 @@ function UsageAdvice({ intervalMinPrice }) {
         <Col>
           <div>
             {` The best time for this is from
-            ${moment
-              .unix(intervalMinPrice[0].timestamp)
-              .format("HH:mm")} to ${moment
-              .unix(intervalMinPrice[intervalMinPrice.length - 1].timestamp)
-              .add(1, "hour")
-              .format("HH:mm")}
+            ${fromBestTime} to ${untilBestTime}
             , which is still left`}
           </div>
         </Col>
