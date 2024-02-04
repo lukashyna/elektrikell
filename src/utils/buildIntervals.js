@@ -10,16 +10,18 @@ export const removePast = (data) => {
 export const getLowPriceInterval = (data, interval) => {
   let minimum = Infinity;
   let result = [];
+  let averagePrice = 0;
   const futureData = removePast(data);
   futureData.forEach((_, i) => {
-    const dataInterval = futureData.slice(i, interval + i + 1);
-    console.log(dataInterval);
+    const dataInterval = futureData.slice(i, interval + i + 1); ////one more obj for point reachart
 
-    if (dataInterval.length < interval) return;
+    if (dataInterval.length <= interval) return;
 
-    const sumInterval = dataInterval.reduce((acc, { price }) => {
-      return acc + parseFloat(price);
-    }, 0);
+    const sumInterval = dataInterval
+      .slice(0, dataInterval.length - 1) //// remove obj for point reachart
+      .reduce((acc, { price }) => {
+        return acc + parseFloat(price);
+      }, 0);
 
     // const sumInterval = lodash.sum(dataInterval.map(({ price }) => price));
 
@@ -27,11 +29,18 @@ export const getLowPriceInterval = (data, interval) => {
       minimum = sumInterval;
       result = dataInterval;
     }
+    averagePrice = minimum / interval;
   });
-  return result.map((r) => {
+
+  const dataIntervaltWithIndex = result.map((r) => {
     return {
       ...r,
       index: data.findIndex(({ timestamp }) => timestamp === r.timestamp),
     };
   });
+
+  return {
+    averagePrice,
+    dataIntervaltWithIndex,
+  };
 };
