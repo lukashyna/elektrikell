@@ -11,12 +11,14 @@ import {
   Dot,
   ResponsiveContainer,
   ReferenceArea,
+  ReferenceLine,
 } from "recharts";
 import lodash from "lodash";
 import { getPriceData } from "../services/apiService";
 import { chartDataConvertor } from "../utils";
 import { currentTimeStamp } from "../utils/dates";
 import { getLowPriceInterval } from "../utils/buildIntervals";
+import { getAveragePrice } from "../utils/maths";
 
 function Body({ from, until, activeHour }) {
   const [priceData, setPriceData] = useState([]);
@@ -67,6 +69,14 @@ function Body({ from, until, activeHour }) {
               stroke="#8884d8"
               dot={renderDot}
             />
+
+            <ReferenceLine
+              y={getAveragePrice(priceData)}
+              label="Average"
+              stroke="red"
+              strokeDasharray="3 3"
+            />
+
             <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
           </LineChart>
         </ResponsiveContainer>
