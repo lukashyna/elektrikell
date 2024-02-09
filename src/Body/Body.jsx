@@ -20,11 +20,13 @@ import { currentTimeStamp } from "../utils/dates";
 import { getLowPriceInterval } from "../utils/buildIntervals";
 import { getAveragePrice } from "../utils/maths";
 import { ERROR_MESSAGE } from "./constants";
+import Loader from "../Loader";
 
 function Body({ from, until, activeHour, setErrorMessage, setBestUntil }) {
   const [priceData, setPriceData] = useState([]);
   const [x1, setX1] = useState(0);
   const [x2, setX2] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const averagePrice = useMemo(() => {
     return getAveragePrice(priceData);
@@ -45,6 +47,8 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntil }) {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
+
     getPriceData(from, until)
       .then(({ data, success }) => {
         if (!success) throw new Error();
@@ -52,9 +56,10 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntil }) {
         const priceData = chartDataConvertor(data.ee);
 
         setPriceData(priceData);
+        setIsLoading(false);
       })
       .catch((error) => setErrorMessage(ERROR_MESSAGE));
-  }, [from, until, setErrorMessage]);
+  }, [from, until, setErrorMessage, setIsLoading]);
 
   useEffect(() => {
     const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
@@ -68,29 +73,31 @@ function Body({ from, until, activeHour, setErrorMessage, setBestUntil }) {
   return (
     <Row>
       <Col>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={priceData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="hour" interval={1} />
-            <YAxis />
-            <Tooltip />
-            <Line
-              type="stepAfter"
-              dataKey="price"
-              stroke="#8884d8"
-              dot={renderDot}
-            />
-
-            <ReferenceLine
-              y={averagePrice}
-              label="Average"
-              stroke="red"
-              strokeDasharray="3 3"
-            />
-
-            <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
-          </LineChart>
-        </ResponsiveContainer>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={priceData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="hour" interval={1} />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="stepAfter"
+                dataKey="price"
+                stroke="#8884d8"
+                dot={renderDot}
+              />
+              <ReferenceLine
+                y={averagePrice}
+                label="Average"
+                stroke="red"
+                strokeDasharray="3 3"
+              />
+              <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </Col>
     </Row>
   );
