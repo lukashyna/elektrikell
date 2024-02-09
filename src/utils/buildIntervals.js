@@ -12,10 +12,9 @@ export const getLowPriceInterval = (data, interval) => {
   let result = [];
   const futureData = removePast(data);
   futureData.forEach((_, i) => {
-    const dataInterval = futureData.slice(i, interval + i + 1);
-    console.log(dataInterval);
+    const dataInterval = futureData.slice(i, interval + i);
 
-    if (dataInterval.length < interval + 1) return;
+    if (dataInterval.length < interval) return;
 
     const sumInterval = dataInterval.reduce((acc, { price }) => {
       return acc + parseFloat(price);
