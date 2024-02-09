@@ -19,11 +19,13 @@ import { chartDataConvertor } from "../utils";
 import { currentTimeStamp } from "../utils/dates";
 import { getLowPriceInterval } from "../utils/buildIntervals";
 import { getAveragePrice } from "../utils/maths";
+import Loader from "../Loader";
 
 function Body({ from, until, activeHour }) {
   const [priceData, setPriceData] = useState([]);
   const [x1, setX1] = useState(0);
   const [x2, setX2] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
 
   const renderDot = (line) => {
     const {
@@ -40,11 +42,14 @@ function Body({ from, until, activeHour }) {
   };
 
   useEffect(() => {
+    setIsLoading(true);
     getPriceData(from, until).then(({ data }) => {
       const priceData = chartDataConvertor(data.ee);
+
       setPriceData(priceData);
+      setIsLoading(false);
     });
-  }, [from, until]);
+  }, [from, until, setIsLoading]);
 
   useEffect(() => {
     const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
@@ -57,29 +62,31 @@ function Body({ from, until, activeHour }) {
   return (
     <Row>
       <Col>
-        <ResponsiveContainer width="100%" height={400}>
-          <LineChart data={priceData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="hour" interval={1} />
-            <YAxis />
-            <Tooltip />
-            <Line
-              type="stepAfter"
-              dataKey="price"
-              stroke="#8884d8"
-              dot={renderDot}
-            />
-
-            <ReferenceLine
-              y={getAveragePrice(priceData)}
-              label="Average"
-              stroke="red"
-              strokeDasharray="3 3"
-            />
-
-            <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
-          </LineChart>
-        </ResponsiveContainer>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <ResponsiveContainer width="100%" height={400}>
+            <LineChart data={priceData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="hour" interval={1} />
+              <YAxis />
+              <Tooltip />
+              <Line
+                type="stepAfter"
+                dataKey="price"
+                stroke="#8884d8"
+                dot={renderDot}
+              />
+              <ReferenceLine
+                y={getAveragePrice(priceData)}
+                label="Average"
+                stroke="red"
+                strokeDasharray="3 3"
+              />
+              <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
+            </LineChart>
+          </ResponsiveContainer>
+        )}
       </Col>
     </Row>
   );
