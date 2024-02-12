@@ -7,8 +7,13 @@ import Badge from "react-bootstrap/Badge";
 import { getCurrentPrice } from "../services/apiService";
 import { mwToKw, addTax } from "../utils/priceFormats";
 import { ERROR_MESSAGE } from "./constants";
+import { useSelector, useDispatch } from "react-redux";
+import { setActivePrice } from "../services/stateService";
 
-function Info({ activePrice, setActivePrice, setErrorMessage }) {
+function Info({ setErrorMessage }) {
+  const activePrice = useSelector((state) => state.main.activePrice);
+  const dispatch = useDispatch();
+
   const [currentPrice, setCurrentPrice] = useState(0);
   useEffect(() => {
     (async () => {
@@ -34,7 +39,7 @@ function Info({ activePrice, setActivePrice, setErrorMessage }) {
             <Button
               key={id}
               active={activePrice === id}
-              onClick={() => setActivePrice(id)}
+              onClick={() => dispatch(setActivePrice(id))}
               variant="secondary"
             >
               {name}

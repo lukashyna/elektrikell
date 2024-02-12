@@ -20,8 +20,13 @@ import { currentTimeStamp } from "../utils/dates";
 import { getLowPriceInterval } from "../utils/buildIntervals";
 import { getAveragePrice } from "../utils/maths";
 import { ERROR_MESSAGE } from "./constants";
+import { useSelector } from "react-redux";
 
-function Body({ from, until, activeHour, setErrorMessage, setBestUntil }) {
+function Body({ setErrorMessage, setBestUntil }) {
+  const activeHour = useSelector((state) => state.main.activeHour);
+  const from = useSelector((state) => state.date.from);
+  const until = useSelector((state) => state.date.until);
+
   const [priceData, setPriceData] = useState([]);
   const [x1, setX1] = useState(0);
   const [x2, setX2] = useState(0);
