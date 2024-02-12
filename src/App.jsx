@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ElectricPrice from "./ElectricPrice";
 import About from "./About";
+import AboutDev from "./About/AboutDev";
 import Navigation from "./Navigation";
 
 function App() {
@@ -12,11 +13,12 @@ function App() {
           <Route path="lowprice/:hours" element={<ElectricPrice />} />
         </Route>
 
-        <Route path="/about" element={<About />} />
-        <Route path="/about/:id" element={<About />} />
-        <Route path="/about/contact" element={<About />} />
-
-        <Route path="*" element={<h1>404</h1>}></Route>
+        <Route path="/about" element={<About />}>
+          <Route path="me" element={<AboutDev />} />
+          <Route path="gamma" element={<AboutDev />} />
+          <Route path="contact-form" element={<AboutDev />} />
+        </Route>
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </>
   );
