@@ -8,7 +8,7 @@ import LeftSideBar from "./LeftSideBar";
 import ErrorModal from "./ErrorModal";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setActiveHour, setErrorMessage } from "./services/stateService";
+import { setActiveHour } from "./services/stateService";
 import { Circles } from "react-loader-spinner";
 
 function ElectricPrice() {
@@ -30,7 +30,7 @@ function ElectricPrice() {
       <Body setIsLoading={setIsLoading} />
       <Footer />
       <LeftSideBar show={showSideBar} handleClose={handleCloseSideBar} />
-      <ErrorModal handleClose={() => dispatch(setErrorMessage(null))} />
+      <ErrorModal />
       {isLoading && (
         <Container
           fluid
