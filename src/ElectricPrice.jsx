@@ -7,14 +7,13 @@ import Footer from "./Footer";
 import LeftSideBar from "./LeftSideBar";
 import ErrorModal from "./ErrorModal";
 import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setActiveHour, setErrorMessage } from "./services/stateService";
 import { Circles } from "react-loader-spinner";
 
 function ElectricPrice() {
   const params = useParams();
   const dispatch = useDispatch();
-  const errorMessage = useSelector((state) => state.main.errorMessage);
 
   const [showSideBar, setShowSideBar] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,10 +30,7 @@ function ElectricPrice() {
       <Body setIsLoading={setIsLoading} />
       <Footer />
       <LeftSideBar show={showSideBar} handleClose={handleCloseSideBar} />
-      <ErrorModal
-        show={!!errorMessage}
-        handleClose={() => dispatch(setErrorMessage(null))}
-      />
+      <ErrorModal handleClose={() => dispatch(setErrorMessage(null))} />
       {isLoading && (
         <Container
           fluid
