@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import {
@@ -26,6 +26,7 @@ import {
   setBestUntil,
   setIsLoading,
 } from "../services/stateService";
+import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
 
 function Body() {
   const dispatch = useDispatch();
@@ -38,9 +39,7 @@ function Body() {
   const [x1, setX1] = useState(0);
   const [x2, setX2] = useState(0);
 
-  const averagePrice = useMemo(() => {
-    return getAveragePrice(priceData);
-  }, [priceData]);
+  const { actions, values } = useContext(ElectricPriceContext);
 
   const renderDot = useCallback((line) => {
     const {
@@ -64,10 +63,12 @@ function Body() {
         const priceData = chartDataConvertor(data.ee);
 
         setPriceData(priceData);
+
+        actions.setAveragePrice(getAveragePrice(priceData));
       })
       .catch((error) => dispatch(setErrorMessage(ERROR_MESSAGE)))
       .finally(() => dispatch(setIsLoading(false)));
-  }, [from, until, dispatch]);
+  }, [from, until, dispatch, actions]);
 
   useEffect(() => {
     const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
@@ -95,7 +96,7 @@ function Body() {
             />
 
             <ReferenceLine
-              y={averagePrice}
+              y={values.averagePrice}
               label="Average"
               stroke="red"
               strokeDasharray="3 3"
