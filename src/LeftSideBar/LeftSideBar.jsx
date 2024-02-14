@@ -9,7 +9,6 @@ function LeftSideBar({ ...formProps }) {
     return state.main.showSideBar;
   });
   const handleClose = () => dispatch(setShowSideBar(false));
-  console.log("show", show);
   return (
     <Offcanvas show={show} onHide={handleClose} placement="start">
       <Offcanvas.Header closeButton>
