@@ -4,11 +4,11 @@ import Row from "react-bootstrap/Row";
 // import Search from "./Search";
 
 function Head(props) {
-  const { handleOpenSideBar, ...restProps } = props;
+  const { ...restProps } = props;
   return (
     <>
       <Row>
-        <Logo handleOpenSideBar={handleOpenSideBar} />
+        <Logo />
         {/* <Search /> */}
       </Row>
       <Row>
