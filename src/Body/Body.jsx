@@ -21,9 +21,13 @@ import { getLowPriceInterval } from "../utils/buildIntervals";
 import { getAveragePrice } from "../utils/maths";
 import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
-import { setErrorMessage, setBestUntil } from "../services/stateService";
+import {
+  setErrorMessage,
+  setBestUntil,
+  setIsLoading,
+} from "../services/stateService";
 
-function Body({ setIsLoading }) {
+function Body() {
   const dispatch = useDispatch();
 
   const activeHour = useSelector((state) => state.main.activeHour);
@@ -62,8 +66,8 @@ function Body({ setIsLoading }) {
         setPriceData(priceData);
       })
       .catch((error) => dispatch(setErrorMessage(ERROR_MESSAGE)))
-      .finally(() => setIsLoading(false));
-  }, [from, until, setIsLoading, dispatch]);
+      .finally(() => dispatch(setIsLoading(false)));
+  }, [from, until, dispatch]);
 
   useEffect(() => {
     const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);

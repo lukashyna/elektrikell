@@ -7,11 +7,13 @@ import {
 import { DEFAULT_ACTIVE_BUTTON } from "../Head/constants";
 import { getDefaultFrom, getDefaultUntil } from "../utils/dates";
 
-const initialState = {
+const initialMainState = {
   activePrice: DEFAULT_ACTIVE_BUTTON,
   activeHour: 1,
   errorMessage: null,
   bestUntil: 0,
+  showSideBar: false,
+  isLoading: true,
 };
 
 const initialDateState = {
@@ -23,8 +25,10 @@ export const setActivePrice = createAction("setActivePrice");
 export const setActiveHour = createAction("setActiveHour");
 export const setErrorMessage = createAction("setErrorMessage");
 export const setBestUntil = createAction("setBestUntil");
+export const setShowSideBar = createAction("setShowSideBar");
+export const setIsLoading = createAction("setIsLoading");
 
-const main = createReducer(initialState, (builder) => {
+const main = createReducer(initialMainState, (builder) => {
   builder
     .addCase(setActivePrice, (state, action) => {
       state.activePrice = action.payload;
@@ -37,6 +41,13 @@ const main = createReducer(initialState, (builder) => {
     })
     .addCase(setBestUntil, (state, action) => {
       state.bestUntil = action.payload;
+    })
+    .addCase(setShowSideBar, (state, action) => {
+      console.log(action);
+      state.showSideBar = action.payload;
+    })
+    .addCase(setIsLoading, (state, action) => {
+      state.isLoading = action.payload;
     });
 });
 
