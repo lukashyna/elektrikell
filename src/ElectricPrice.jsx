@@ -9,14 +9,14 @@ import ErrorModal from "./ErrorModal";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setActiveHour } from "./services/stateService";
+import { Circles } from "react-loader-spinner";
 
 function ElectricPrice() {
   const params = useParams();
   const dispatch = useDispatch();
 
   const [showSideBar, setShowSideBar] = useState(false);
-  const [errorMessage, setErrorMessage] = useState(null);
-  const [bestUntil, setBestUntil] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleOpenSideBar = () => setShowSideBar(true);
   const handleCloseSideBar = () => setShowSideBar(false);
@@ -26,18 +26,27 @@ function ElectricPrice() {
   }, [params, dispatch]);
   return (
     <Container>
-      <Head
-        handleOpenSideBar={handleOpenSideBar}
-        setErrorMessage={setErrorMessage}
-      />
-      <Body setErrorMessage={setErrorMessage} setBestUntil={setBestUntil} />
-      <Footer bestUntil={bestUntil} />
+      <Head handleOpenSideBar={handleOpenSideBar} />
+      <Body setIsLoading={setIsLoading} />
+      <Footer />
       <LeftSideBar show={showSideBar} handleClose={handleCloseSideBar} />
-      <ErrorModal
-        show={!!errorMessage}
-        handleClose={() => setErrorMessage(null)}
-        errorMessage={errorMessage}
-      />
+      <ErrorModal />
+      {isLoading && (
+        <Container
+          fluid
+          className="vh-100 bg-white z-1 position-absolute top-0 start-0"
+        >
+          <Circles
+            height="280"
+            width="280"
+            color="#0A26CB"
+            ariaLabel="circles-loading"
+            wrapperStyle={{}}
+            wrapperClass="position-absolute top-50 start-50 translate-middle "
+            visible={true}
+          />
+        </Container>
+      )}
     </Container>
   );
 }
