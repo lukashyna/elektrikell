@@ -1,52 +1,40 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
-import { PRICE_BUTTONS, BADGES, LOW, HIGH, AVERAGE } from "./constants";
-import Badge from "react-bootstrap/Badge";
+import { PRICE_BUTTONS } from "./constants";
 import { getCurrentPrice } from "../services/apiService";
 import { mwToKw, addTax } from "../utils/priceFormats";
 import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
 import { setActivePrice, setErrorMessage } from "../services/stateService";
-import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
+import BadgePrice from "./BadgePrice";
+import ElectricPriceContext from "../contexts/ElectricPriceContext";
 
 function Info() {
   const activePrice = useSelector((state) => state.main.activePrice);
   const dispatch = useDispatch();
 
-  const { values } = useContext(ElectricPriceContext);
-  console.log(values.averagePrice);
-  const [currentPrice, setCurrentPrice] = useState(0);
+  const { actions, values } = useContext(ElectricPriceContext);
+  console.log(actions, values);
   useEffect(() => {
     (async () => {
       try {
         const { data, success } = await getCurrentPrice();
         if (!success) throw new Error();
 
-        setCurrentPrice(+addTax(mwToKw(data[0].price), "ee"));
+        actions.setCurrentPrice(+addTax(mwToKw(data[0].price), "ee"));
       } catch (error) {
         dispatch(setErrorMessage(ERROR_MESSAGE));
       }
     })();
-  }, [dispatch]);
-
-  const findPrice = (arr, id) => {
-    return arr.find((a) => a.id === id);
-  };
-
-  console.log(values.averagePrice);
-
-  const badge =
-    (values.averagePrice > currentPrice && findPrice(BADGES, LOW)) ||
-    (values.averagePrice === currentPrice && findPrice(BADGES, AVERAGE)) ||
-    (values.averagePrice < currentPrice && findPrice(BADGES, HIGH));
+  }, [dispatch, actions]);
 
   return (
     <>
       <Col>
         <div>The current price of electricity is</div>
-        <Badge bg={badge.name}>{badge.id}</Badge>
+        <BadgePrice {...values} />
       </Col>
       <Col>
         <ButtonGroup>
@@ -63,7 +51,7 @@ function Info() {
         </ButtonGroup>
       </Col>
       <Col className="text-end">
-        <h2>{currentPrice}</h2>
+        <h2>{values.currentPrice}</h2>
         <div>cent / kilowatt-hour</div>
       </Col>
     </>
