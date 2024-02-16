@@ -9,14 +9,13 @@ import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
 import { setActivePrice, setErrorMessage } from "../services/stateService";
 import BadgePrice from "./BadgePrice";
-import ElectricPriceContext from "../contexts/ElectricPriceContext";
+import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
 
 function Info() {
   const activePrice = useSelector((state) => state.main.activePrice);
   const dispatch = useDispatch();
 
   const { actions, values } = useContext(ElectricPriceContext);
-  console.log(actions, values);
   useEffect(() => {
     (async () => {
       try {
