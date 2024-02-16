@@ -24,6 +24,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   setErrorMessage,
   setBestUntil,
+  setBestFrom,
   setIsLoading,
 } from "../services/stateService";
 import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
@@ -43,15 +44,22 @@ function Body() {
 
   const renderDot = useCallback((line) => {
     const {
-      // cx,
-      // cy,
+      cx,
+      cy,
       payload: { timestamp },
+      index,
     } = line;
 
     return timestamp === currentTimeStamp() ? (
-      <Dot {...line}>
-        <div></div>
-      </Dot>
+      <Dot
+        cx={cx}
+        cy={cy}
+        r={6}
+        strokeWidth={2}
+        stroke="#0A26CB"
+        fill="#fff"
+        key={index}
+      />
     ) : null;
   }, []);
 
@@ -76,7 +84,10 @@ function Body() {
     if (lowPriceIntervals.length) {
       setX1(lowPriceIntervals[0].position);
       setX2(lodash.last(lowPriceIntervals).position + 1);
-      dispatch(setBestUntil(lowPriceIntervals[0].timestamp));
+      dispatch(setBestFrom(lowPriceIntervals[0].timestamp));
+      dispatch(
+        setBestUntil(lowPriceIntervals[lowPriceIntervals.length - 1].timestamp)
+      );
     }
   }, [priceData, activeHour, dispatch]);
   return (
@@ -84,14 +95,19 @@ function Body() {
       <Col>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={priceData}>
-            <CartesianGrid strokeDasharray="3 3" />
+            <CartesianGrid
+              strokeDasharray="2 2"
+              horizontal={false}
+              strokeWidth="1"
+              stroke="#0A26CB33"
+            />
             <XAxis dataKey="hour" interval={1} />
             <YAxis />
             <Tooltip />
             <Line
               type="stepAfter"
               dataKey="price"
-              stroke="#8884d8"
+              stroke="#0A26CB"
               dot={renderDot}
             />
 
@@ -99,10 +115,16 @@ function Body() {
               y={values.averagePrice}
               label="Average"
               stroke="red"
-              strokeDasharray="3 3"
+              strokeDasharray="1 0"
             />
 
-            <ReferenceArea x1={x1} x2={x2} stroke="red" strokeOpacity={0.3} />
+            <ReferenceArea
+              x1={x1}
+              x2={x2}
+              fill="#ffc10766"
+              stroke="transparent"
+              strokeOpacity={0.3}
+            />
           </LineChart>
         </ResponsiveContainer>
       </Col>

@@ -1,7 +1,6 @@
 import Info from "./Info";
 import Logo from "./Logo";
 import Row from "react-bootstrap/Row";
-// import Search from "./Search";
 
 function Head(props) {
   const { ...restProps } = props;
@@ -9,7 +8,6 @@ function Head(props) {
     <>
       <Row>
         <Logo />
-        {/* <Search /> */}
       </Row>
       <Row>
         <Info {...restProps} />
