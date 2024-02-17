@@ -40,7 +40,10 @@ function Body() {
   const [x1, setX1] = useState(0);
   const [x2, setX2] = useState(0);
 
-  const { actions, values } = useContext(ElectricPriceContext);
+  const {
+    actions: { setAveragePrice },
+    values,
+  } = useContext(ElectricPriceContext);
 
   const renderDot = useCallback((line) => {
     const {
@@ -72,11 +75,11 @@ function Body() {
 
         setPriceData(priceData);
 
-        actions.setAveragePrice(getAveragePrice(priceData));
+        setAveragePrice(getAveragePrice(priceData));
       })
       .catch((error) => dispatch(setErrorMessage(ERROR_MESSAGE)))
       .finally(() => dispatch(setIsLoading(false)));
-  }, [from, until, dispatch, actions]);
+  }, [from, until, dispatch, setAveragePrice]);
 
   useEffect(() => {
     const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);

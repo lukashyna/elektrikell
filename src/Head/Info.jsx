@@ -15,19 +15,22 @@ function Info() {
   const activePrice = useSelector((state) => state.main.activePrice);
   const dispatch = useDispatch();
 
-  const { actions, values } = useContext(ElectricPriceContext);
+  const {
+    actions: { setCurrentPrice },
+    values,
+  } = useContext(ElectricPriceContext);
   useEffect(() => {
     (async () => {
       try {
         const { data, success } = await getCurrentPrice();
         if (!success) throw new Error();
 
-        actions.setCurrentPrice(+addTax(mwToKw(data[0].price), "ee"));
+        setCurrentPrice(+addTax(mwToKw(data[0].price), "ee"));
       } catch (error) {
         dispatch(setErrorMessage(ERROR_MESSAGE));
       }
     })();
-  }, [dispatch, actions]);
+  }, [dispatch, setCurrentPrice]);
 
   return (
     <>
