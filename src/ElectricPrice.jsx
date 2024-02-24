@@ -24,11 +24,11 @@ function ElectricPrice() {
       <Container>
         <Head />
         <Body />
-        <Footer />
-        <LeftSideBar />
-        <ErrorModal />
-        <Loading />
       </Container>
+      <Footer />
+      <LeftSideBar />
+      <ErrorModal />
+      <Loading />
     </ElectricPriceProvider>
   );
 }

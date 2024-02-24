@@ -4,9 +4,15 @@ function About() {
   return (
     <>
       <Container>
-        <Row>
+        <Row className="my-5">
           <Col>
-            <h2>Project Goal: Electricity Price Tracker</h2>
+            <img
+              src="../img/js-array-methods-cheatsheet-1.jpeg"
+              alt="elektrikell"
+            />
+          </Col>
+          <Col>
+            <h2>Electricity Price Tracker</h2>
             The goal of the "Electricity Price Tracker" project is to provide
             users with a tool for efficiently monitoring real-time electricity
             prices. Users can search by date and time, receive recommendations
@@ -24,19 +30,14 @@ function About() {
             <h2>Technologies Used:</h2>
             <ul>
               <li>
-                React: The application leverages React for its user interface
-                components, enabling efficient rendering and management of
+                React: Utilized for building the user interface of the
+                application, providing efficient rendering and management of
                 search functionalities.
               </li>
               <li>
-                Forms: React Forms facilitate input and processing of search
-                criteria, allowing users to specify date and time parameters for
-                retrieving electricity price data.
-              </li>
-              <li>
-                Hooks: React Hooks are utilized to manage state and side effects
-                related to search queries and data retrieval, enhancing the
-                functionality and responsiveness of the app.
+                Forms: React Forms are employed for creating and processing
+                search criteria, allowing users to specify date and time
+                parameters for retrieving electricity price data.
               </li>
               <li>
                 Hooks: React Hooks are utilized to manage state and side effects
@@ -52,6 +53,18 @@ function About() {
                 React Router: React Router handles client-side routing, enabling
                 navigation between search results and other views within the
                 application.
+              </li>
+              <li>
+                Redux: Redux is used for managing global state and facilitating
+                predictable state management across the application,
+                particularly useful for handling complex data interactions and
+                maintaining consistency.
+              </li>
+              <li>
+                Recharts: Recharts is employed for data visualization,
+                particularly for rendering interactive charts and graphs to
+                display electricity price data in an intuitive and informative
+                manner.
               </li>
             </ul>
           </Col>

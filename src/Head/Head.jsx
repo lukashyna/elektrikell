@@ -1,16 +1,16 @@
 import Info from "./Info";
-import Logo from "./Logo";
+import Search from "./Search";
 import Row from "react-bootstrap/Row";
 
 function Head(props) {
   const { ...restProps } = props;
   return (
     <>
-      <Row>
-        <Logo />
-      </Row>
-      <Row>
+      <Row className="my-3">
         <Info {...restProps} />
+      </Row>
+      <Row className="my-3">
+        <Search />
       </Row>
     </>
   );

@@ -11,8 +11,7 @@ const initialMainState = {
   activePrice: DEFAULT_ACTIVE_BUTTON,
   activeHour: 1,
   errorMessage: null,
-  bestFrom: 0,
-  bestUntil: 0,
+  bestInterval: [],
   showSideBar: false,
   isLoading: true,
 };
@@ -25,8 +24,7 @@ const initialDateState = {
 export const setActivePrice = createAction("setActivePrice");
 export const setActiveHour = createAction("setActiveHour");
 export const setErrorMessage = createAction("setErrorMessage");
-export const setBestFrom = createAction("setBestFrom");
-export const setBestUntil = createAction("setBestUntil");
+export const setBestInterval = createAction("setBestInterval");
 export const setShowSideBar = createAction("setShowSideBar");
 export const setIsLoading = createAction("setIsLoading");
 
@@ -41,14 +39,10 @@ const main = createReducer(initialMainState, (builder) => {
     .addCase(setErrorMessage, (state, action) => {
       state.errorMessage = action.payload;
     })
-    .addCase(setBestFrom, (state, action) => {
-      state.bestFrom = action.payload;
-    })
-    .addCase(setBestUntil, (state, action) => {
-      state.bestUntil = action.payload;
+    .addCase(setBestInterval, (state, action) => {
+      state.bestInterval = action.payload;
     })
     .addCase(setShowSideBar, (state, action) => {
-      console.log(action);
       state.showSideBar = action.payload;
     })
     .addCase(setIsLoading, (state, action) => {
