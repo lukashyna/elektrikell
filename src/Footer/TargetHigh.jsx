@@ -4,9 +4,9 @@ import Col from "react-bootstrap/Col";
 function TargetHigh() {
   return (
     <Row>
-      <Col>
+      <Col className="text-center">
         <p>Near future</p>
-        <p>THERE ARE NO PEAK HOURS</p>
+        <p className="countdown">THERE ARE NO PEAK HOURS</p>
         <p>
           If you want to consume at the most reasonable time, select{" "}
           <span>Cheap hours</span>

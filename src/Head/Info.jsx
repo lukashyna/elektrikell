@@ -35,17 +35,19 @@ function Info() {
   return (
     <>
       <Col>
-        <div>The current price of electricity is</div>
+        <div>The current price of electricity is </div>
+
         <BadgePrice {...values} />
       </Col>
-      <Col>
+      <Col className="d-flex align-items-center justify-content-center">
         <ButtonGroup>
           {PRICE_BUTTONS.map(({ name, id }) => (
             <Button
               key={id}
               active={activePrice === id}
               onClick={() => dispatch(setActivePrice(id))}
-              variant="secondary"
+              variant="light"
+              className="custom-button"
             >
               {name}
             </Button>

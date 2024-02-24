@@ -23,8 +23,7 @@ import { ERROR_MESSAGE } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setErrorMessage,
-  setBestUntil,
-  setBestFrom,
+  setBestInterval,
   setIsLoading,
 } from "../services/stateService";
 import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
@@ -55,16 +54,44 @@ function Body() {
 
     return timestamp === currentTimeStamp() ? (
       <Dot
-        cx={cx}
+        cx={cx + 12}
         cy={cy}
-        r={6}
-        strokeWidth={2}
-        stroke="#0A26CB"
-        fill="#fff"
+        r={4}
+        strokeWidth={8}
+        stroke="#dc354533"
+        fill="#dc3545"
         key={index}
+        fillOpacity={1}
+        ifOverflow="discard"
+        isFront={false}
       />
     ) : null;
   }, []);
+  const CustomTooltip = ({ active, payload, label }) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div className="custom-tooltip">
+          <p>{label}:00</p>
+          <p>Price: {data.price}</p>
+        </div>
+      );
+    }
+
+    return null;
+  };
+
+  const CustomTick = (props) => {
+    const { x, y, payload } = props;
+    if (payload.index % 2 === 0) {
+      return (
+        <text x={x} y={y} dy={16} textAnchor="middle" fill="#666">
+          {payload.value}
+        </text>
+      );
+    }
+    return null;
+  };
 
   useEffect(() => {
     getPriceData(from, until)
@@ -82,19 +109,19 @@ function Body() {
   }, [from, until, dispatch, setAveragePrice]);
 
   useEffect(() => {
-    const lowPriceIntervals = getLowPriceInterval(priceData, activeHour);
-
+    const priceDataForInterval = priceData.slice(0, -1);
+    const lowPriceIntervals = getLowPriceInterval(
+      priceDataForInterval,
+      activeHour
+    );
     if (lowPriceIntervals.length) {
       setX1(lowPriceIntervals[0].position);
       setX2(lodash.last(lowPriceIntervals).position + 1);
-      dispatch(setBestFrom(lowPriceIntervals[0].timestamp));
-      dispatch(
-        setBestUntil(lowPriceIntervals[lowPriceIntervals.length - 1].timestamp)
-      );
+      dispatch(setBestInterval(lowPriceIntervals));
     }
   }, [priceData, activeHour, dispatch]);
   return (
-    <Row>
+    <Row className="my-5">
       <Col>
         <ResponsiveContainer width="100%" height={400}>
           <LineChart data={priceData}>
@@ -104,9 +131,9 @@ function Body() {
               strokeWidth="1"
               stroke="#0A26CB33"
             />
-            <XAxis dataKey="hour" interval={1} />
+            <XAxis dataKey="hour" interval={0} tick={<CustomTick />} />
             <YAxis />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} />
             <Line
               type="stepAfter"
               dataKey="price"
@@ -116,8 +143,8 @@ function Body() {
 
             <ReferenceLine
               y={values.averagePrice}
-              label="Average"
-              stroke="red"
+              label="Average price"
+              stroke="#ffc107"
               strokeDasharray="1 0"
             />
 

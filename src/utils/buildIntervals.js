@@ -1,4 +1,3 @@
-// import lodash from "lodash";
 import { currentTimeStamp } from "./dates";
 
 export const removePast = (data) => {
@@ -19,8 +18,6 @@ export const getLowPriceInterval = (data, interval) => {
     const sumInterval = dataInterval.reduce((acc, { price }) => {
       return acc + parseFloat(price);
     }, 0);
-
-    // const sumInterval = lodash.sum(dataInterval.map(({ price }) => price));
 
     if (minimum > sumInterval) {
       minimum = sumInterval;

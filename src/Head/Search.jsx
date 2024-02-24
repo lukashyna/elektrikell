@@ -3,14 +3,13 @@ import Button from "react-bootstrap/Button";
 import { setShowSideBar } from "../services/stateService";
 import { useDispatch } from "react-redux";
 
-function Logo() {
+function Search() {
   const dispatch = useDispatch();
   const handleOpenSideBar = () => dispatch(setShowSideBar(true));
 
   return (
     <>
-      <Col>Logo</Col>
-      <Col>
+      <Col className="d-flex">
         <Button variant="primary" onClick={handleOpenSideBar}>
           Search
         </Button>
@@ -19,4 +18,4 @@ function Logo() {
   );
 }
 
-export default Logo;
+export default Search;

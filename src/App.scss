@@ -1,1 +1,113 @@
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+:root {
+  --font-family-main: "Gothic A1", sans-serif;
+  --font-family-heading: "Libre Caslon Text", sans-serif;
+  --font-size-base: 18px;
+  --font-weight-base: 400;
+  --line-height-base: 1.5;
+
+  --color-link-hover: #0a26cb;
+
+  --color-tooltip-bg: #0a26cb1a;
+  --color-tooltip-text: #ffc10766;
+
+  --color-button-bg: #0d6efd33;
+  --color-button-hover: #0d6efd;
+
+  --font-size-countdown: 36px;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family-main);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-base);
+  line-height: var(--line-height-base);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+#root > .container {
+  flex: 1 0 auto;
+}
+
+.footer {
+  flex: 0 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-base);
+}
+
+a.nav-link:hover {
+  color: var(--color-link-hover);
+}
+
+.my-badge {
+  font-size: 14px;
+  padding: 8px 15px;
+  border-radius: 6px;
+  opacity: 0.9;
+}
+
+.recharts-wrapper {
+  .custom-tooltip {
+    background-color: var(--color-tooltip-bg);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .recharts-tooltip-cursor {
+    width: 100%;
+    stroke: #ff0000;
+    stroke-width: 1px;
+  }
+
+  .recharts-text.recharts-label {
+    fill: var(--color-tooltip-text);
+    font-size: var(--font-size-countdown);
+  }
+
+  .recharts-active-dot {
+    display: none;
+  }
+}
+
+.custom-button {
+  background-color: var(--color-button-bg);
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.custom-button:hover,
+.custom-button.active {
+  background-color: var(--color-button-hover);
+  color: white;
+}
+
+.countdown {
+  text-align: center;
+  font-size: var(--font-size-countdown);
+  font-weight: 500;
+}

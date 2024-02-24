@@ -7,7 +7,7 @@ export const BADGES = [
     id: LOW,
   },
   {
-    name: "info",
+    name: "warning",
     id: AVERAGE,
   },
   {
