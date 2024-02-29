@@ -1,8 +1,7 @@
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import { convertToInputFormat, convertToRequestFormat } from "../utils/dates";
 import { useSelector, useDispatch } from "react-redux";
-import { setFrom, setUntil } from "../services/stateService";
+import { Form, Button } from "react-bootstrap";
+import { convertToInputFormat, convertToRequestFormat } from "../utils";
+import { setFrom, setUntil } from "../services";
 
 function SearchForm({ handleClose }) {
   const dispatch = useDispatch();
@@ -29,6 +28,7 @@ function SearchForm({ handleClose }) {
           placeholder="Date from"
           name="from"
           defaultValue={convertToInputFormat(from)}
+          max={convertToInputFormat(until)}
         />
       </Form.Group>
       <Form.Group className="mb-3">
@@ -38,6 +38,8 @@ function SearchForm({ handleClose }) {
           placeholder="Date until"
           name="until"
           defaultValue={convertToInputFormat(until)}
+          min={convertToInputFormat(from)}
+          max={convertToInputFormat(until)}
         />
       </Form.Group>
       <Button variant="primary" className="w-100" type="submit">

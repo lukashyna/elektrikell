@@ -1,9 +1,8 @@
 import { useSelector } from "react-redux";
 import { Container } from "react-bootstrap";
-
+import { DEFAULT_ACTIVE_BUTTON } from "../Head/constants";
 import TargetHigh from "./TargetHigh";
 import TargetLow from "./TargetLow";
-import { DEFAULT_ACTIVE_BUTTON } from "../Head/constants";
 
 function Footer() {
   const activePrice = useSelector((state) => state.main.activePrice);

@@ -1,10 +1,7 @@
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import Stack from "react-bootstrap/Stack";
-import { INTERVALS } from "./constants";
 import { useSelector, useDispatch } from "react-redux";
-import { setActiveHour } from "../services/stateService";
+import { Row, Col, Button, Stack } from "react-bootstrap";
+import { INTERVALS } from "./constants";
+import { setActiveHour } from "../services";
 
 function Intervals() {
   const dispatch = useDispatch();

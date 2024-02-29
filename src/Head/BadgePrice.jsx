@@ -1,6 +1,5 @@
-import Badge from "react-bootstrap/Badge";
-import { BADGES } from "./constants";
-import { LOW, AVERAGE, HIGH } from "./constants";
+import { Badge } from "react-bootstrap";
+import { BADGES, LOW, AVERAGE, HIGH } from "./constants";
 
 function BadgePrice({ currentPrice, averagePrice }) {
   const findPrice = (arr, id) => {

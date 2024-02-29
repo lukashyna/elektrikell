@@ -1,16 +1,16 @@
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { Container } from "react-bootstrap";
+import { setActiveHour } from "./services";
+import { ElectricPriceProvider } from "./contexts";
 import "./App.scss";
-import Container from "react-bootstrap/Container";
 import Head from "./Head";
 import Body from "./Body";
 import Footer from "./Footer";
 import LeftSideBar from "./LeftSideBar";
 import ErrorModal from "./ErrorModal";
 import Loading from "./Loading";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setActiveHour } from "./services/stateService";
-import ElectricPriceProvider from "./contexts/ElectricPriceContext";
 
 function ElectricPrice() {
   const params = useParams();
