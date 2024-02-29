@@ -1,7 +1,6 @@
-import Col from "react-bootstrap/Col";
-import Button from "react-bootstrap/Button";
-import { setShowSideBar } from "../services/stateService";
 import { useDispatch } from "react-redux";
+import { Col, Button } from "react-bootstrap";
+import { setShowSideBar } from "../services";
 
 function Search() {
   const dispatch = useDispatch();

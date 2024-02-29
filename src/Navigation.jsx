@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
-import Navbar from "react-bootstrap/Navbar";
-import { Container } from "react-bootstrap";
-import Nav from "react-bootstrap/Nav";
+import { Container, Nav, Navbar } from "react-bootstrap";
 
 function Navigation() {
   return (
     <Navbar bg="light" data-bs-theme="light">
       <Container>
-        <Navbar.Brand href="./#home">
+        <Navbar.Brand href="/elektrikell">
           <svg
             width="170"
             height="25"

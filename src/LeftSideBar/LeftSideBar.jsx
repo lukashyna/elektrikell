@@ -1,7 +1,7 @@
-import Offcanvas from "react-bootstrap/Offcanvas";
-import SearchForm from "./SearchForm";
-import { setShowSideBar } from "../services/stateService";
 import { useDispatch, useSelector } from "react-redux";
+import { Offcanvas } from "react-bootstrap";
+import { setShowSideBar } from "../services";
+import SearchForm from "./SearchForm";
 
 function LeftSideBar({ ...formProps }) {
   const dispatch = useDispatch();
@@ -16,6 +16,11 @@ function LeftSideBar({ ...formProps }) {
       </Offcanvas.Header>
       <Offcanvas.Body>
         <SearchForm {...formProps} handleClose={handleClose} />
+        <p className="my-3">
+          The "from" date must be in the past, and the "until" date must be in
+          the future. Additionally, you can request data for up to one day
+          ahead.
+        </p>
       </Offcanvas.Body>
     </Offcanvas>
   );

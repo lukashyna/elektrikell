@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Electricity Price Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The Electricity Price Tracker is a web application designed to provide users with real-time insights into electricity prices, enabling informed decisions about energy consumption. It integrates seamlessly with the elering.ee API to retrieve up-to-date electricity price data. Users can search for prices based on specific date and time parameters, receive recommendations on cost-effective timeframes for energy usage, and analyze consumption history.
 
-## Available Scripts
+![Electricity Price Tracker](public/img/app.jpeg)
 
-In the project directory, you can run:
+## Installation:
+
+### `git clone https://github.com/lukashyna/elektrikell.git`
+
+Clone the repository from GitHub.
+
+### `cd elektrikell`
+
+Navigate to the project directory.
+
+### `npm install`
+
+to install dependencies.
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+to start the development server.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Open your browser and visit http://localhost:3000 to access the application.
 
-### `npm test`
+## Features:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Real-time Price Monitoring:** Users can monitor real-time electricity prices to make informed decisions about energy consumption.
+- **Search Functionality:** Search functionality allows users to specify date and time parameters to retrieve electricity price data.
+- **Cost-Effective Timeframes:** The application provides recommendations on the most cost-effective timeframes for energy usage.
+- **Data Analysis:** Users can analyze consumption history to better understand their energy usage patterns.
+- **User-Friendly Interface:** The application features a user-friendly interface designed for ease of use and accessibility.
 
-### `npm run build`
+## Technologies Used:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **React:** Used for building the user interface and managing search functionalities efficiently.
+- **React Forms:** Employed for creating and processing search criteria, enabling users to specify date and time parameters.
+- **React Hooks:** Used to manage state and side effects related to search queries and data retrieval.
+- **Context API:** Manages global state related to search parameters and electricity price data, ensuring seamless communication between components.
+- **React Router:** Handles client-side routing for navigation between search results and other views within the application.
+- **Redux:** Manages global state and facilitates predictable state management across the application.
+- **Recharts:** Utilized for data visualization, particularly for rendering interactive charts and graphs to display electricity price data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Contributions are welcome! Feel free to submit bug reports, feature requests, or pull requests to help improve the project.
 
-### `npm run eject`
+## Author:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Anastasiia Lukashyna - Junior Front end developer.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Gamma Intelligence Training Centre
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contact:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+For inquiries or feedback, you can reach out to the author via email at anastasiia.lukashyna@gmail.com.

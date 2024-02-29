@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback, useContext } from "react";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import { useSelector, useDispatch } from "react-redux";
+import { Row, Col } from "react-bootstrap";
 import {
   LineChart,
   CartesianGrid,
@@ -14,19 +14,20 @@ import {
   ReferenceLine,
 } from "recharts";
 import lodash from "lodash";
-import { getPriceData } from "../services/apiService";
-import { chartDataConvertor } from "../utils";
-import { currentTimeStamp } from "../utils/dates";
-import { getLowPriceInterval } from "../utils/buildIntervals";
-import { getAveragePrice } from "../utils/maths";
 import { ERROR_MESSAGE } from "./constants";
-import { useSelector, useDispatch } from "react-redux";
 import {
+  chartDataConvertor,
+  currentTimeStamp,
+  getLowPriceInterval,
+  getAveragePrice,
+} from "../utils";
+import {
+  getPriceData,
   setErrorMessage,
   setBestInterval,
   setIsLoading,
-} from "../services/stateService";
-import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
+} from "../services";
+import { ElectricPriceContext } from "../contexts";
 
 function Body() {
   const dispatch = useDispatch();
@@ -67,6 +68,7 @@ function Body() {
       />
     ) : null;
   }, []);
+
   const CustomTooltip = ({ active, payload, label }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
@@ -120,6 +122,7 @@ function Body() {
       dispatch(setBestInterval(lowPriceIntervals));
     }
   }, [priceData, activeHour, dispatch]);
+
   return (
     <Row className="my-5">
       <Col>
@@ -140,14 +143,12 @@ function Body() {
               stroke="#0A26CB"
               dot={renderDot}
             />
-
             <ReferenceLine
               y={values.averagePrice}
               label="Average price"
               stroke="#ffc107"
               strokeDasharray="1 0"
             />
-
             <ReferenceArea
               x1={x1}
               x2={x2}

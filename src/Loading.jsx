@@ -1,6 +1,6 @@
-import Container from "react-bootstrap/Container";
-import { Circles } from "react-loader-spinner";
 import { useSelector } from "react-redux";
+import { Container } from "react-bootstrap";
+import { Circles } from "react-loader-spinner";
 
 function Loading() {
   const isLoading = useSelector((state) => state.main.isLoading);

@@ -1,4 +1,4 @@
-const apiUpl = "https://dashboard.elering.ee/api";
+const apiUpl = process.env.REACT_APP_API_URL;
 
 export const getPriceData = async (from, until) => {
   const data = new URLSearchParams({

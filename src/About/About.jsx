@@ -1,15 +1,13 @@
 import { Link, Outlet } from "react-router-dom";
 import { Container, Row, Col } from "react-bootstrap";
+
 function About() {
   return (
     <>
       <Container>
         <Row className="my-5">
           <Col>
-            <img
-              src="../img/js-array-methods-cheatsheet-1.jpeg"
-              alt="elektrikell"
-            />
+            <img src="/img/app.jpeg" alt="elektrikell" />
           </Col>
           <Col>
             <h2>Electricity Price Tracker</h2>
@@ -30,38 +28,38 @@ function About() {
             <h2>Technologies Used:</h2>
             <ul>
               <li>
-                React: Utilized for building the user interface of the
+                <b>React: </b>Utilized for building the user interface of the
                 application, providing efficient rendering and management of
                 search functionalities.
               </li>
               <li>
-                Forms: React Forms are employed for creating and processing
-                search criteria, allowing users to specify date and time
-                parameters for retrieving electricity price data.
+                <b> Forms: </b>React Forms are employed for creating and
+                processing search criteria, allowing users to specify date and
+                time parameters for retrieving electricity price data.
               </li>
               <li>
-                Hooks: React Hooks are utilized to manage state and side effects
-                related to search queries and data retrieval, enhancing the
-                functionality and responsiveness of the app.
+                <b> Hooks:</b> React Hooks are utilized to manage state and side
+                effects related to search queries and data retrieval, enhancing
+                the functionality and responsiveness of the app.
               </li>
               <li>
-                Context API: The Context API manages global state related to
-                search parameters and electricity price data, ensuring seamless
-                communication between components.
+                <b>Context API: </b>The Context API manages global state related
+                to search parameters and electricity price data, ensuring
+                seamless communication between components.
               </li>
               <li>
-                React Router: React Router handles client-side routing, enabling
-                navigation between search results and other views within the
-                application.
+                <b>React Router:</b> React Router handles client-side routing,
+                enabling navigation between search results and other views
+                within the application.
               </li>
               <li>
-                Redux: Redux is used for managing global state and facilitating
-                predictable state management across the application,
-                particularly useful for handling complex data interactions and
-                maintaining consistency.
+                <b>Redux:</b> Redux is used for managing global state and
+                facilitating predictable state management across the
+                application, particularly useful for handling complex data
+                interactions and maintaining consistency.
               </li>
               <li>
-                Recharts: Recharts is employed for data visualization,
+                <b>Recharts:</b> Recharts is employed for data visualization,
                 particularly for rendering interactive charts and graphs to
                 display electricity price data in an intuitive and informative
                 manner.
@@ -69,15 +67,17 @@ function About() {
             </ul>
           </Col>
         </Row>
-        <Link to="me" className="btn btn-info">
-          About me
-        </Link>
-        <Link to="gamma" className="btn btn-info">
-          About gamma
-        </Link>
-        <Link to="contact-form" className="btn btn-info">
-          Contact form
-        </Link>
+        <Row className="about-links gap-3 my-5 justify-content-center">
+          <Link to="me" className="custom-button col-3 ">
+            About me
+          </Link>
+          <Link to="gamma" className="custom-button col-3">
+            About gamma
+          </Link>
+          <Link to="contact-form" className="custom-button col-3">
+            Your feedback
+          </Link>
+        </Row>
       </Container>
       <Outlet />
     </>

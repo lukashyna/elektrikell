@@ -1,11 +1,15 @@
-import { useSelector } from "react-redux";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 import { Row, Col } from "react-bootstrap";
-import Intervals from "./Intervals";
 import Countdown from "react-countdown";
-import { secondsToHours, secondsToHoursPlusHour } from "../utils/dates";
-import { getAveragePrice, getProfitabilityPercentage } from "../utils/maths";
-import { ElectricPriceContext } from "../contexts/ElectricPriceContext";
+import {
+  secondsToHours,
+  secondsToHoursPlusHour,
+  getAveragePrice,
+  getProfitabilityPercentage,
+} from "../utils";
+import { ElectricPriceContext } from "../contexts";
+import Intervals from "./Intervals";
 
 function TargetLow(props) {
   const bestInterval = useSelector((state) => state.main.bestInterval);
@@ -30,8 +34,8 @@ function TargetLow(props) {
       <>
         {hours === 0 && minutes === 0 && seconds === 0 ? (
           <>
-            <p className="countdown">The best time for this is now!</p>
-            <p>It will be more expensive later</p>
+            <p className="countdown m-0">The best time for this is now!</p>
+            <p className="m-0">It will be more expensive later</p>
           </>
         ) : (
           <>
@@ -56,7 +60,7 @@ function TargetLow(props) {
     <>
       <Row>
         <Col>
-          <p className="text-center">I want to consume</p>
+          <p className="text-center m-0">I want to consume</p>
         </Col>
       </Row>
       <Row>

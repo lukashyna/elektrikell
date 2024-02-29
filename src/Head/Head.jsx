@@ -1,6 +1,6 @@
+import { Row } from "react-bootstrap";
 import Info from "./Info";
 import Search from "./Search";
-import Row from "react-bootstrap/Row";
 
 function Head(props) {
   const { ...restProps } = props;
