@@ -5,9 +5,9 @@ function About() {
   return (
     <>
       <Container>
-        <Row className="my-5">
+        <Row className="my-5 about-row">
           <Col>
-            <img src="/img/app.jpeg" alt="elektrikell" />
+            <img src="../img/app.jpeg" alt="elektrikell" />
           </Col>
           <Col>
             <h2>Electricity Price Tracker</h2>

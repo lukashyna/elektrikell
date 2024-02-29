@@ -6,7 +6,7 @@ function Head(props) {
   const { ...restProps } = props;
   return (
     <>
-      <Row className="my-3">
+      <Row className="my-3 info-row">
         <Info {...restProps} />
       </Row>
       <Row className="my-3">

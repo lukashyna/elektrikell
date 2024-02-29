@@ -30,12 +30,12 @@ function Info() {
 
   return (
     <>
-      <Col>
+      <Col className="w-50">
         <div>The current price of electricity is </div>
 
         <BadgePrice {...values} />
       </Col>
-      <Col className="d-flex align-items-center justify-content-center">
+      <Col className="d-flex align-items-center justify-content-center switch-buttons">
         <ButtonGroup>
           {PRICE_BUTTONS.map(({ name, id }) => (
             <Button
@@ -50,7 +50,7 @@ function Info() {
           ))}
         </ButtonGroup>
       </Col>
-      <Col className="text-end">
+      <Col className="text-end w-50">
         <h2 className="m-0">{values.currentPrice}</h2>
         <div>cent / kilowatt-hour</div>
       </Col>

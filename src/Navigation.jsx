@@ -4,7 +4,7 @@ import { Container, Nav, Navbar } from "react-bootstrap";
 function Navigation() {
   return (
     <Navbar bg="light" data-bs-theme="light">
-      <Container>
+      <Container className="nav-container">
         <Navbar.Brand href="/elektrikell">
           <svg
             width="170"
